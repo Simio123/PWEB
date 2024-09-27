@@ -1,0 +1,77 @@
+p.verso{
+
+    color: blue;
+ 
+}
+
+p.mote{
+
+    color: red;
+ 
+}
+
+a:link {
+    color: rgb(0, 72, 255);
+}
+  
+a:visited {
+    color: green;
+}
+  
+a:hover {
+    color: hotpink;
+}
+  
+a:active {
+    color: blue;
+}
+
+img.poeta {
+    border-radius: 50%;
+}
+
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.row {
+    display: flex; 
+    justify-content: space-between; 
+    margin-top: 20px; 
+}
+
+.column {
+    flex: 1; 
+    margin-right: 20px; 
+}
+
+.column:last-child {
+    margin-right: 0; 
+}
+
+#customers {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+#customers td, #customers th {
+    border: 1px solid #000000;
+    padding: 8px;
+}
+
+#customers tr:nth-child(even) {
+    background-color: #84a2ee;
+}
+
+#customers tr:hover {
+    background-color: #c3d4ea;
+}
+
+#customers th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #041daa;
+    color: rgb(255, 255, 255);
+}
