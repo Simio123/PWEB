@@ -9,3 +9,23 @@ p.mote{
     color: red;
  
 }
+
+a:link {
+    color: red;
+}
+  
+a:visited {
+    color: green;
+}
+  
+a:hover {
+    color: hotpink;
+}
+  
+a:active {
+    color: blue;
+}
+
+img {
+    border-radius: 50%;
+}
