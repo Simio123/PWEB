@@ -26,6 +26,6 @@ a:active {
     color: blue;
 }
 
-img {
+img.poeta {
     border-radius: 50%;
 }
