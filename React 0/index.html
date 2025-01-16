@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>ReactZero</title>
+   </head>
+   <body>
+      <div id="app"></div>
+      <script src="libs/react.js"></script>
+      <script src="libs/react-dom.js"></script>
+      <script>
+         ReactDOM.render(
+            React.createElement(
+               'div',
+               null,
+               React.createElement(
+                  'h1',
+                  { id: 'my-heading' },
+                  React.createElement(
+                     'span',
+                     null,
+                     'React ',
+                     React.createElement('em', null, 'é muito')
+                  ),
+                  ' massa!'
+               ),
+               React.createElement(
+                  'table',
+                  { border: 1, style: { marginTop: '20px' } },
+                  React.createElement(
+                     'thead',
+                     null,
+                     React.createElement(
+                        'tr',
+                        null,
+                        React.createElement('th', null, 'Coluna 1'),
+                        React.createElement('th', null, 'Coluna 2')
+                     )
+                  ),
+                  React.createElement(
+                     'tbody',
+                     null,
+                     React.createElement(
+                        'tr',
+                        null,
+                        React.createElement('td', null, 'Linha 1, Coluna 1'),
+                        React.createElement('td', null, 'Linha 1, Coluna 2')
+                     ),
+                     React.createElement(
+                        'tr',
+                        null,
+                        React.createElement('td', null, 'Linha 2, Coluna 1'),
+                        React.createElement('td', null, 'Linha 2, Coluna 2')
+                     )
+                  )
+               )
+            ),
+            document.getElementById('app')
+         );
+      </script>
+   </body>
+</html>

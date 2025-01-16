@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>ReceitaReact - 2</title>
+      <link rel="stylesheet" type="text/css" href="estilos.css"> 
+   </head>
+   <body>
+      <div id="app"></div>
+
+      <script src="libs/react.js"></script>
+      <script src="libs/react-dom.js"></script>
+      <script src="libs/babel.js"></script>
+
+      <script type="text/babel">
+      
+         class TabelaBebidas extends React.Component {
+            render() {
+               const { titulo } = this.props;
+
+               return (
+                  <div>
+                     <h1>{titulo}</h1>
+                     <table id="tabela" border="1">
+                        <thead>
+                           <tr><th>Nome</th><th>Marca</th></tr>
+                        </thead>
+                        <tbody>
+                           <tr><td>Havana</td><td>Engenho Anísio Santiago</td></tr>
+                           <tr><td>Seleta</td><td>Salinas</td></tr>
+                           <tr><td>Boazinha</td><td>Salinas</td></tr>
+                           <tr><td>Prata</td><td>Vale Verde</td></tr>
+                        </tbody>
+                     </table>
+                  </div>
+               );
+            }
+         }
+
+         class ListaCachacas extends React.Component {
+            render() {
+               return (
+                  <div>
+                     <h2>Lista de Cachaças</h2>
+                     <ul>
+                        <li>Havana</li>
+                        <li>Seleta</li>
+                        <li>Boazinha</li>
+                        <li>Prata</li>
+                     </ul>
+                  </div>
+               );
+            }
+         }
+
+         class Cabecalho extends React.Component {
+            render() {
+               return (
+                  <div>
+                     <h1>Minha Página de Bebidas</h1>
+                     <p>Exibindo diferentes tipos de cachaças e suas marcas.</p>
+                  </div>
+               );
+            }
+         }
+
+         class Receita extends React.Component {
+            render() {
+               return (
+                  <div>
+                     <h2>Receita de Caipirinha</h2>
+                     <p>Ingredientes:</p>
+                     <ul>
+                        <li>50ml de cachaça</li>
+                        <li>1 limão</li>
+                        <li>2 colheres de açúcar</li>
+                        <li>Gelo a gosto</li>
+                     </ul>
+                     <p>Modo de preparo: Corte o limão, adicione a cachaça, o açúcar e o gelo. Mexa bem e sirva!</p>
+                  </div>
+               );
+            }
+         }
+
+         class PaginaCompleta extends React.Component {
+            render() {
+               return (
+                  <div>
+                     <Cabecalho />
+                     <TabelaBebidas titulo="Tabela de Cana" />
+                     <ListaCachacas />
+                     <Receita />
+                  </div>
+               );
+            }
+         }
+
+         ReactDOM.render(
+            <PaginaCompleta />,
+            document.getElementById("app")
+         );
+
+      </script>
+   </body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>React Um</title>
+      <link rel="stylesheet" href="estilos.css">
+   </head>
+   <body>
+      <div id="app"></div>
+      <script src="libs/react.js"></script>
+      <script src="libs/react-dom.js"></script>
+      <script src="libs/babel.js"></script>
+
+      <script type="text/babel">
+         const bebidas = [
+            { nome: 'Havana', marca: 'Engenho Anísio Santiago' },
+            { nome: 'Seleta', marca: 'Salinas' },
+            { nome: 'Boazinha', marca: 'Salinas' },
+            { nome: 'Prata', marca: 'Vale Verde' },
+         ];
+
+         function Cabecalho() {
+            return <h1>Minha tabela de bebidas</h1>;
+         }
+
+         function TabelaBebidas({ dados }) {
+            return (
+               <table id="tabela">
+                  <thead>
+                     <tr>
+                        <th>Nome</th>
+                        <th>Marca</th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                     {dados.map((bebida, index) => (
+                        <tr key={index}>
+                           <td>{bebida.nome}</td>
+                           <td>{bebida.marca}</td>
+                        </tr>
+                     ))}
+                  </tbody>
+               </table>
+            );
+         }
+
+         function Pagina() {
+            const [mostrarTabela, setMostrarTabela] = React.useState(false);
+
+            return (
+               <div className="container">
+                  <Cabecalho />
+                  <button onClick={() => setMostrarTabela(true)}>Mostrar Tabela</button>
+                  {mostrarTabela && <TabelaBebidas dados={bebidas} />}
+               </div>
+            );
+         }
+
+         ReactDOM.render(<Pagina />, document.getElementById("app"));
+      </script>
+   </body>
+</html>
