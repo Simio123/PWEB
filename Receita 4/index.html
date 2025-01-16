@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta charset="UTF-8">
+      <style>
+         table {
+            width: 60%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            font-family: Arial, sans-serif;
+         }
+         th, td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+         }
+         th {
+            background-color: #333333;
+            color: white;
+         }
+         tr:nth-child(even) {
+            background-color: #f2f2f2;
+         }
+         tr:hover {
+            background-color: #ddd;
+         }
+         button {
+            display: block;
+            margin: 10px auto;
+            padding: 10px 20px;
+            background-color: #302eb1;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+         }
+         button:hover {
+            background-color: #515be6;
+         }
+      </style>
+   </head>
+   <body>
+      <div id="meu-amor">
+         <button id="botaoCarregar">Carregando cervejas...</button>
+         <button id="botaoOrdenar">Mostrar cervejas ordenadas</button>
+         <button id="botaoEmbaralhar">Embaralhar cervejas</button>
+      </div>
+   </body>
+   <script>
+      let cervejas = [
+         "Guinness", "Desperados", "Becks", "Heineken", "Corona", 
+         "Budweiser", "Stella Artois", "Skol", "Brahma", "Antarctica", 
+         "Eisenbahn", "Paulaner", "Hoegaarden", "Kaiser", "Amstel"
+      ];
+
+      function carregarTabela() {
+         exibirTabela(cervejas);
+      }
+
+      function ordenarEExibir() {
+         cervejas.sort(); 
+         exibirTabela(cervejas);
+      }
+
+      function embaralharEExibir() {
+         cervejas.sort(() => Math.random() - 0.5);
+         exibirTabela(cervejas);
+      }
+
+      function exibirTabela(lista) {
+         let tabelaHtml = `
+            <table>
+               <thead>
+                  <tr>
+                     <th>Cervejas</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  ${lista.map(nome => `<tr><td>${nome}</td></tr>`).join("")}
+               </tbody>
+            </table>
+         `;
+
+         let div = document.getElementById("meu-amor");
+         div.innerHTML = tabelaHtml;
+
+         div.insertAdjacentHTML('beforeend', `
+            <button id="botaoCarregar">Carregando cervejas...</button>
+            <button id="botaoOrdenar">Mostrar cervejas ordenadas</button>
+            <button id="botaoEmbaralhar">Embaralhar cervejas</button>
+         `);
+
+         document.getElementById("botaoCarregar").addEventListener("click", carregarTabela);
+         document.getElementById("botaoOrdenar").addEventListener("click", ordenarEExibir);
+         document.getElementById("botaoEmbaralhar").addEventListener("click", embaralharEExibir);
+      }
+
+      document.getElementById("botaoCarregar").addEventListener("click", carregarTabela);
+      document.getElementById("botaoOrdenar").addEventListener("click", ordenarEExibir);
+      document.getElementById("botaoEmbaralhar").addEventListener("click", embaralharEExibir);
+   </script>
+</html>

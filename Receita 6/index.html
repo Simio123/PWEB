@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Cervejas e seus Teores de Álcool</title>
+      <link rel="stylesheet" href="estilos.css">
+   </head>
+   <body>
+
+      <div class="container">
+         <h1>Cervejas e seus Teores de Álcool</h1>
+         <div><button id="botaoCarregar">Carregar Cervejas</button></div>
+         <div id="cervejasDiv" class="table-container"></div>
+      </div>
+
+      <script>
+         let cervejas = [
+            {
+               name: "Guinness",
+               alcohol: "10%",
+               style: "Imperial Stout",
+               ibu: "55"
+            },
+            {
+               name: "Desperados",
+               alcohol: "6%",
+               style: "Lager",
+               ibu: "22"
+            },
+            {
+               name: "Becks",
+               alcohol: "5%",
+               style: "Pilsen",
+               ibu: "20"
+            },
+            {
+               name: "Stella Artois",
+               alcohol: "5%",
+               style: "APA",
+               ibu: "45"
+            },
+            {
+               name: "Heineken",
+               alcohol: "5%",
+               style: "Lager",
+               ibu: "23"
+            }
+         ];
+
+         const carregarTabela = (cs, idElemento = "cervejasDiv", cabecalhos = ["Nome", "Álcool", "Estilo", "Amargor"], propriedades = ["name", "alcohol", "style", "ibu"]) => {
+            const div = document.getElementById(idElemento);  
+            const tabelaHtml = `
+               <table>
+                  <thead>
+                     <tr>
+                        ${cabecalhos.map(header => `<th>${header}</th>`).join("\n")}
+                     </tr>
+                  </thead>
+                  <tbody>
+                     ${cs.map(item => `
+                        <tr>
+                           ${propriedades.map(prop => `<td>${item[prop] || "N/A"}</td>`).join("\n")}
+                        </tr>
+                     `).join("\n")}
+                  </tbody>
+               </table>
+            `;
+
+            div.innerHTML = tabelaHtml;
+         };
+
+         let botao = document.getElementById("botaoCarregar");
+         botao.addEventListener("click", () => carregarTabela(cervejas));
+      </script>
+
+   </body>
+</html>

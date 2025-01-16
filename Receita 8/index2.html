@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Exibição de Dados</title>
+    <link rel="stylesheet" href="estilos.css">
+</head>
+
+<body>
+    <div><button id="botaoCarregar">Carregar Itens</button></div>
+    <div id="itensDiv"></div>
+
+    <script src="tabela.js"></script>
+    <script>
+        function carregarItens() {
+            fetch("https://random-data-api.com/api/v2/users?size=5")
+                .then(res => {
+                    if (!res.ok) {
+                        throw new Error("Erro na resposta da API");
+                    }
+                    return res.json();
+                })
+                .then(usuarios => {
+                    console.log(usuarios);
+
+                    const cabecalhos = ["First Name", "Last Name", "Email", "Address", "Company"];
+                    carregarTabela(usuarios, cabecalhos);
+                })
+                .catch(err => {
+                    document.getElementById("itensDiv").innerHTML = "Ocorreu um erro ao carregar os itens...";
+                    console.error(err);
+                });
+        }
+
+        document.getElementById("botaoCarregar").addEventListener("click", carregarItens);
+    </script>
+</body>
+
+</html>

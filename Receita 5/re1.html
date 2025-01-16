@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Bloons TD6</title>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .row {
+            display: flex; 
+            justify-content: space-between; 
+            margin-top: 20px; 
+        }
+
+        .column {
+            flex: 1; 
+            margin-right: 20px; 
+        }
+
+        .column:last-child {
+            margin-right: 0; 
+        }
+
+        #customers, #macacosTable {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        #customers td, #customers th, #macacosTable td, #macacosTable th {
+            border: 1px solid #000000;
+            padding: 8px;
+        }
+
+        #customers tr:nth-child(even), #macacosTable tr:nth-child(even) {
+            background-color: #84a2ee;
+        }
+
+        #customers tr:hover, #macacosTable tr:hover {
+            background-color: #c3d4ea;
+        }
+
+        #customers th, #macacosTable th {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: left;
+            background-color: #041daa;
+            color: rgb(255, 255, 255);
+        }
+
+        a {
+            color: #041daa;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        a:hover {
+            color: #f7931e;
+        }
+    </style>
+</head>
+<body>
+    <h1>Loja de Bloons TD6</h1>
+    <p>
+        Bem-vindo à wiki de Bloons TD6! Obtenha informações sobre balões e macacos.
+    </p>
+
+    <img src="https://pbs.twimg.com/media/Ggim7bGXQAAhbCM?format=jpg&name=900x900" width="200"/>
+
+    <div class="row">
+        <div class="column">
+            <h1>Balões</h1>
+            <table id="customers">
+                <tr>
+                    <th>Nome</th>
+                    <th>Tipo</th>
+                    <th>Características</th>
+                </tr>
+            </table>
+            <a href="#" id="mostrarBaloes">Mostrar Balões</a> | <a href="#" id="ordenarBaloes">Ordenar Balões</a> | <a href="#" id="embaralharBaloes">Embaralhar Balões</a>
+        </div>
+        <div class="column">
+            <h1>Macacos</h1>
+            <table id="macacosTable">
+                <tr>
+                    <th>Nome</th>
+                    <th>Tipo</th>
+                    <th>Habilidade</th>
+                </tr>
+            </table>
+            <a href="#" id="mostrarMacacos">Mostrar Macacos</a> | <a href="#" id="ordenarMacacos">Ordenar Macacos</a> | <a href="#" id="embaralharMacacos">Embaralhar Macacos</a>
+        </div>
+    </div>
+
+    <script>
+        let baloes = [
+            { nome: "Red Bloon", tipo: "Simples", caracteristicas: "Lento e frágil." },
+            { nome: "Blue Bloon", tipo: "Simples", caracteristicas: "Lento e frágil." },
+            { nome: "Green Bloon", tipo: "Simples", caracteristicas: "Lento e frágil." },
+            { nome: "Yellow Bloon", tipo: "Simples", caracteristicas: "Mais rápido que o Green Bloon." },
+            { nome: "Pink Bloon", tipo: "Simples", caracteristicas: "Muito rápido." },
+            { nome: "Black Bloon", tipo: "Explosivo", caracteristicas: "Explode ao ser atingido." },
+            { nome: "White Bloon", tipo: "Explosivo", caracteristicas: "Explode ao ser atingido." },
+            { nome: "Lead Bloon", tipo: "Blindado", caracteristicas: "Resistente a alguns ataques." },
+            { nome: "Camo Bloon", tipo: "Camuflado", caracteristicas: "Invisível para certos macacos." },
+            { nome: "Frozen Bloon", tipo: "Congelado", caracteristicas: "Impedido de se mover." },
+            { nome: "Zebra Bloon", tipo: "Explosivo", caracteristicas: "Explode em múltiplos Bloons." },
+            { nome: "Rainbow Bloon", tipo: "Explosivo", caracteristicas: "Explode em várias cores." },
+            { nome: "Ceramic Bloon", tipo: "Blindado", caracteristicas: "Resistente e poderoso." },
+            { nome: "Moab", tipo: "Gigante", caracteristicas: "Muito forte, mas pode ser destruído." },
+            { nome: "Bfb", tipo: "Gigante", caracteristicas: "Mais forte que o Moab." },
+            { nome: "Ddt", tipo: "Camuflado e Blindado", caracteristicas: "Camuflado e blindado." },
+            { nome: "Zomg", tipo: "Gigante", caracteristicas: "Muito poderoso, difícil de destruir." },
+            { nome: "Bad", tipo: "Gigante", caracteristicas: "Extremamente poderoso." }
+        ];
+
+        let macacos = [
+            { nome: "Dart Monkey", tipo: "Tiro", habilidade: "Atira dardos rápidos e simples." },
+            { nome: "Boomerang Monkey", tipo: "Tiro", habilidade: "Atira bumerangues que retornam." },
+            { nome: "Bomb Shooter", tipo: "Explosivo", habilidade: "Dispara bombas explosivas." },
+            { nome: "Tack Shooter", tipo: "Tiro", habilidade: "Dispara tacks em todas as direções." },
+            { nome: "Ice Monkey", tipo: "Congelamento", habilidade: "Congela os inimigos próximos." },
+            { nome: "Glue Gunner", tipo: "Adesivo", habilidade: "Desacelera e fixa os inimigos." },
+            { nome: "Sniper Monkey", tipo: "Tiro", habilidade: "Atira tiros longos e precisos." },
+            { nome: "Monkey Sub", tipo: "Navio", habilidade: "Atira torpedos debaixo d'água." },
+            { nome: "Monkey Buccaneer", tipo: "Navio", habilidade: "Atira balas e pode pegar riquezas." },
+            { nome: "Monkey Ace", tipo: "Aéreo", habilidade: "Atira em linha reta ou circula." },
+            { nome: "Heli Pilot", tipo: "Aéreo", habilidade: "Voa sobre os inimigos e os atira." },
+            { nome: "Mortar Monkey", tipo: "Explosivo", habilidade: "Dispara bombas de longo alcance." },
+            { nome: "Druid", tipo: "Magia", habilidade: "Controla a natureza para causar dano." },
+            { nome: "Alchemist", tipo: "Suporte", habilidade: "Transforma balões em outros mais fracos." },
+            { nome: "Super Monkey", tipo: "Tiro", habilidade: "Dispara raios poderosos e rápidos." },
+            { nome: "Ninja Monkey", tipo: "Tiro", habilidade: "Atira shurikens rápidos e invisíveis." },
+            { nome: "Wizard Monkey", tipo: "Magia", habilidade: "Lança feitiços poderosos e devastadores." },
+            { nome: "Banana Farm", tipo: "Suporte", habilidade: "Gera bananas para obter dinheiro." },
+            { nome: "Spike Factory", tipo: "Defesa", habilidade: "Gera espinhos para bloquear os balões." }
+        ];
+
+        const mostrarItens = (itens, idTabela) => {
+            const tabela = document.getElementById(idTabela);
+            const itensHtml = itens.map(item => 
+                `<tr><td>${item.nome}</td><td>${item.tipo}</td><td>${item.caracteristicas || item.habilidade}</td></tr>`
+            );
+            tabela.innerHTML = `<tr><th>Nome</th><th>Tipo</th><th>Características</th></tr>${itensHtml.join("\n")}`;
+        };
+
+        const ordenarItens = (itens) => {
+            return itens.sort((a, b) => a.nome.localeCompare(b.nome));
+        };
+
+        const embaralharItens = (itens) => {
+            return itens.sort(() => Math.random() - 0.5);
+        };
+
+        document.getElementById("mostrarBaloes").addEventListener("click", () => mostrarItens(baloes, "customers"));
+        document.getElementById("ordenarBaloes").addEventListener("click", () => {
+            baloes = ordenarItens(baloes);
+            mostrarItens(baloes, "customers");
+        });
+        document.getElementById("embaralharBaloes").addEventListener("click", () => {
+            baloes = embaralharItens(baloes);
+            mostrarItens(baloes, "customers");
+        });
+
+        document.getElementById("mostrarMacacos").addEventListener("click", () => mostrarItens(macacos, "macacosTable"));
+        document.getElementById("ordenarMacacos").addEventListener("click", () => {
+            macacos = ordenarItens(macacos);
+            mostrarItens(macacos, "macacosTable");
+        });
+        document.getElementById("embaralharMacacos").addEventListener("click", () => {
+            macacos = embaralharItens(macacos);
+            mostrarItens(macacos, "macacosTable");
+        });
+    </script>
+</body>
+</html>

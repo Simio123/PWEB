@@ -14,13 +14,13 @@
    </head>
    <body>
       <div id="botao-container">
-         <button id="botaoCarregar">Carregando cervejas...</button>
+         <a href="#" id="botaoCarregar">Carregando cervejas...</a>
       </div>
       <div id="cerveja-container">
       </div>
    </body>
    <script>
-      function alternarDiv() {
+      const alternarDiv = () => {
          let cervejaDiv = document.getElementById("cerveja-container");
 
          if (cervejaDiv.classList.contains("visible")) {
@@ -36,9 +36,12 @@
                cervejaDiv.classList.add("visible");
             }, 10); 
          }
-      }
+      };
 
-      let botao = document.getElementById("botaoCarregar");
-      botao.addEventListener("click", alternarDiv);
+      let link = document.getElementById("botaoCarregar");
+      link.addEventListener("click", (e) => {
+         e.preventDefault();
+         alternarDiv();
+      });
    </script>
 </html>

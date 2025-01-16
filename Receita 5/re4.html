@@ -1,0 +1,118 @@
+<!DOCTYPE html> 
+<html>
+   <head>
+      <meta charset="UTF-8">
+      <style>
+         table {
+            width: 60%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            font-family: Arial, sans-serif;
+         }
+         th, td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+         }
+         th {
+            background-color: #333333;
+            color: white;
+         }
+         tr:nth-child(even) {
+            background-color: #f2f2f2;
+         }
+         tr:hover {
+            background-color: #ddd;
+         }
+         a {
+            display: block;
+            margin: 10px auto;
+            padding: 10px 20px;
+            background-color: #302eb1;
+            color: white;
+            text-align: center;
+            border-radius: 5px;
+            text-decoration: none;
+         }
+         a:hover {
+            background-color: #515be6;
+         }
+      </style>
+   </head>
+   <body>
+      <div id="meu-amor">
+         <a href="#" id="botaoCarregar">Carregando macacos...</a>
+         <a href="#" id="botaoOrdenar">Mostrar macacos ordenados</a>
+         <a href="#" id="botaoEmbaralhar">Embaralhar macacos</a>
+      </div>
+   </body>
+   <script>
+      let macacos = [
+         "Macaco Ladrão", "Macaco Militar", "Macaco Magico", "Macaco Super Macaco", "Macaco Bombardeiro",
+         "Macaco Navegador", "Macaco Sombra", "Macaco Atirador", "Macaco Torre de Gelo", "Macaco Provedor de Dano",
+         "Macaco Balão", "Macaco Bombardeio", "Macaco Centelha", "Macaco Submarino", "Macaco Arauto"
+      ];
+
+      const carregarTabela = () => exibirTabela(macacos);
+
+      const ordenarEExibir = () => {
+         macacos.sort();
+         exibirTabela(macacos);
+      };
+
+      const embaralharEExibir = () => {
+         macacos.sort(() => Math.random() - 0.5);
+         exibirTabela(macacos);
+      };
+
+      const exibirTabela = (lista) => {
+         let tabelaHtml = `
+            <table>
+               <thead>
+                  <tr>
+                     <th>Macacos</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  ${lista.map(nome => `<tr><td>${nome}</td></tr>`).join("")}
+               </tbody>
+            </table>
+         `;
+
+         let div = document.getElementById("meu-amor");
+         div.innerHTML = tabelaHtml;
+
+         div.insertAdjacentHTML('beforeend', `
+            <a href="#" id="botaoCarregar">Carregando macacos...</a>
+            <a href="#" id="botaoOrdenar">Mostrar macacos ordenados</a>
+            <a href="#" id="botaoEmbaralhar">Embaralhar macacos</a>
+         `);
+
+         document.getElementById("botaoCarregar").addEventListener("click", (e) => {
+            e.preventDefault();
+            carregarTabela();
+         });
+         document.getElementById("botaoOrdenar").addEventListener("click", (e) => {
+            e.preventDefault();
+            ordenarEExibir();
+         });
+         document.getElementById("botaoEmbaralhar").addEventListener("click", (e) => {
+            e.preventDefault();
+            embaralharEExibir();
+         });
+      };
+
+      document.getElementById("botaoCarregar").addEventListener("click", (e) => {
+         e.preventDefault();
+         carregarTabela();
+      });
+      document.getElementById("botaoOrdenar").addEventListener("click", (e) => {
+         e.preventDefault();
+         ordenarEExibir();
+      });
+      document.getElementById("botaoEmbaralhar").addEventListener("click", (e) => {
+         e.preventDefault();
+         embaralharEExibir();
+      });
+   </script>
+</html>
