@@ -1,21 +1,29 @@
+import Link from 'next/link'
+
+
+
 export default function Home(){
 
-  return (
+    return (
 
-      <div>
+        <div>           
 
-          <div>Menu principal</div>
+            <div>
 
-          <div>
+                <h1>
 
-              <h1>
+                    Viva Santana!
 
-                  Viva Santana!
+                </h1>
 
-              </h1>
+                <Link href="/novarota">Rota1</Link> <br/><br/>
 
-          </div>
-      </div>       
-  )
+                <a href="/novarota">Rota 1, jeito antigo</a>
+
+            </div>
+
+        </div>       
+
+    )
 
 }
