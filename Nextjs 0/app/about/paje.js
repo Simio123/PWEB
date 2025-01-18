@@ -1,5 +1,19 @@
-import { Sobre } from '../page'
+import { Sobre } from "./componentes";
 
-export default function About() {
-  return <Sobre /> 
+
+
+export default function AboutHome(){
+
+    return (
+
+       <div>
+
+          <h1>sim</h1>
+
+          <Sobre/>
+
+       </div>
+
+    )
+
 }
