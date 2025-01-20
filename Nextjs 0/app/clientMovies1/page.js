@@ -1,17 +1,17 @@
 "use client";
 
-import { useState } from "react";
-import "./estilos.css"; 
+import React, { useState, useCallback } from "react";
+import "./estilos.css";
 
 export default function Home() {
   const [resultMovies, setResultMovies] = useState([]);
-  const [titleSearchKey, setTitleSearchKey] = useState(""); 
-  const [isLoading, setIsLoading] = useState(false); 
+  const [titleSearchKey, setTitleSearchKey] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
-  async function handleAction(event) {
-    event.preventDefault(); 
+  const handleAction = useCallback(async (event) => {
+    event.preventDefault();
+    setIsLoading(true);
 
-    setIsLoading(true); 
     try {
       const httpRes = await fetch(`http://www.omdbapi.com/?apikey=f1cbc41e&s=${titleSearchKey}`);
       const jsonRes = await httpRes.json();
@@ -19,10 +19,10 @@ export default function Home() {
     } catch (error) {
       console.error("Erro ao buscar filmes:", error);
     } finally {
-      setIsLoading(false); 
-      setTitleSearchKey(""); 
+      setIsLoading(false);
+      setTitleSearchKey("");  
     }
-  }
+  }, [titleSearchKey]);
 
   return (
     <div className="min-h-screen bg-gray-100 p-6 flex flex-col items-center">
@@ -38,12 +38,14 @@ export default function Home() {
   );
 }
 
-export function MovieForm({ handleAction, titleSearchKey, setTitleSearchKey, isLoading }) {
+const MovieForm = React.memo(({ handleAction, titleSearchKey, setTitleSearchKey, isLoading }) => {
+  console.log("Rendering MovieForm");
+
   function handleKeyDown(event) {
     if (event.key === "Enter") {
-      event.preventDefault(); 
+      event.preventDefault();
       if (!isLoading) {
-        handleAction(event); 
+        handleAction(event);
       }
     }
   }
@@ -57,10 +59,10 @@ export function MovieForm({ handleAction, titleSearchKey, setTitleSearchKey, isL
         <input
           id="idTitleSearchKey"
           name="titleSearchKey"
-          value={titleSearchKey} 
-          onChange={(e) => setTitleSearchKey(e.target.value)} 
-          onKeyDown={handleKeyDown} 
-          disabled={isLoading} 
+          value={titleSearchKey}
+          onChange={(e) => setTitleSearchKey(e.target.value)}
+          onKeyDown={handleKeyDown}
+          disabled={isLoading}
           className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
         />
       </div>
@@ -73,9 +75,11 @@ export function MovieForm({ handleAction, titleSearchKey, setTitleSearchKey, isL
       </button>
     </form>
   );
-}
+});
 
-export function MovieTable({ movies }) {
+const MovieTable = ({ movies }) => {
+  console.log("Rendering MovieTable");
+
   return (
     <div className="w-full max-w-4xl bg-white shadow-md rounded px-8 py-6">
       {movies.length > 0 ? (
@@ -100,4 +104,4 @@ export function MovieTable({ movies }) {
       )}
     </div>
   );
-}
+};
